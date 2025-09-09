@@ -43,7 +43,7 @@ const Dashboard = () => {
 
   const handleSaveTask = async (taskData: Partial<Task>) => {
     if (editingTask) {
-      await updateTask(editingTask.id, taskData);
+      await updateTask(editingTask._id, taskData);
     } else {
       await createTask(taskData);
     }

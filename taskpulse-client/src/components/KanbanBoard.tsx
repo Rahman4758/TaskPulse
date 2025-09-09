@@ -60,7 +60,7 @@ export const KanbanBoard = ({
     e.preventDefault();
     
     if (draggedTask && draggedTask.status !== status) {
-      onUpdateTask(draggedTask.id, { status });
+      onUpdateTask(draggedTask._id, { status });
     }
     
     setDraggedTask(null);
@@ -127,13 +127,13 @@ export const KanbanBoard = ({
               ) : (
                 statusTasks.map((task) => (
                   <TaskCard
-                    key={task.id}
+                    key={task._id}
                     task={task}
                     onEdit={onEditTask}
                     onDelete={onDeleteTask}
                     onDragStart={handleDragStart}
                     onDragEnd={handleDragEnd}
-                    isDragging={draggedTask?.id === task.id}
+                    isDragging={draggedTask?._id === task._id}
                   />
                 ))
               )}

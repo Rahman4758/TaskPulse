@@ -63,7 +63,7 @@ export const TaskCard = ({
                 Edit
               </DropdownMenuItem>
               <DropdownMenuItem 
-                onClick={() => onDelete(task.id)}
+                onClick={() => onDelete(task._id)}
                 className="text-destructive focus:text-destructive"
               >
                 <Trash2 className="mr-2 h-3 w-3" />
