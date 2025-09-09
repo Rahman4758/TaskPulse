@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Task, CreateTaskRequest, UpdateTaskRequest } from '@/types/task';
 import { toast } from '@/hooks/use-toast';
 
-const API_BASE_URL = "https://taskpulse-ow75.onrender.com/api"; 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/api";
 export const useTasks = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ export const useTasks = () => {
   const fetchTasks = async () => {
     try {
       const token = localStorage.getItem('taskpulse_token');
-      const response = await fetch(`${API_BASE_URL}/tasks`, {
+      const response = await fetch(`${API_BASE_URL}/api/tasks`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -38,7 +38,7 @@ export const useTasks = () => {
   const createTask = async (taskData: Partial<CreateTaskRequest>) => {
     try {
       const token = localStorage.getItem('taskpulse_token');
-        const response = await fetch(`${API_BASE_URL}/tasks`, {
+        const response = await fetch(`${API_BASE_URL}/api/tasks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ export const useTasks = () => {
   const updateTask = async (taskId: string, taskData: Partial<UpdateTaskRequest>) => {
     try {
       const token = localStorage.getItem('taskpulse_token');
-      const response = await fetch(`${API_BASE_URL}/tasks/${taskId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tasks/${taskId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ export const useTasks = () => {
   const deleteTask = async (taskId: string) => {
     try {
       const token = localStorage.getItem('taskpulse_token');
-      const response = await fetch(`${API_BASE_URL}/tasks/${taskId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tasks/${taskId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
