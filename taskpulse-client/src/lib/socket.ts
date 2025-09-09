@@ -7,7 +7,8 @@ export const useSocket = () => {
 
   useEffect(() => {
     // Initialize socket connection
-    socketRef.current = io('ws://localhost:5000', {
+    const url = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000'
+    socketRef.current = io(url, {
       autoConnect: true,
       reconnection: true,
       reconnectionDelay: 1000,

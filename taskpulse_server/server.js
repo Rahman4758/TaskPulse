@@ -12,7 +12,7 @@ const app = express();
 const server = http.createServer(app);
 
 // Middleware
-app.use(cors("http://localhost:8080"));
+app.use(cors(process.env.CLIENT_URL));
 app.use(express.json());
 
 // Socket.io
